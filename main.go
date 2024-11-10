@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 
 	"os"
 	"strconv"
@@ -45,7 +46,7 @@ func main() {
 
 				mutex.Unlock()
 			}
-
+			log.Print("The waiting stage has been completed")
 			fmt.Println("Данные получены,текущее состояние буфера:", *arr)
 			permission[1] <- true
 		}
@@ -63,7 +64,7 @@ func main() {
 				permission[2] <- true
 			}
 		}()
-
+		log.Print("The initialization stage is completed")
 		return output
 	}
 
@@ -87,7 +88,7 @@ func main() {
 			}
 
 		}()
-
+		log.Print("The addition stage is completed")
 		return filtredPos
 	}
 
@@ -111,7 +112,7 @@ func main() {
 			}
 
 		}()
-
+		log.Print("The multiplication stage is completed")
 		return filtredThree
 	}
 
@@ -140,7 +141,7 @@ func main() {
 				}
 			}()
 		case <-done:
-
+			log.Print("The program is completed")
 			fmt.Println("Программа завершена")
 			return
 		}
